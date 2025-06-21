@@ -1,0 +1,27 @@
+{
+  "input": [
+    {
+      "type": "text",
+      "action": "add",
+      "args": {
+        "inputDir": "./source",
+      }
+    }
+  ],
+  "output": [
+    {
+      "type": "v2rayGeoIPDat",
+      "args": {
+        "outputDir": "./release",
+        "excludeList": ["merged"]
+      }
+     },
+     {
+      "type": "mihomoMRS",
+      "args": {
+        "outputDir": "./release"
+      }
+     }
+
+  ]
+}

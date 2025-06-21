@@ -1,0 +1,69 @@
+name: Generate RuleSet
+
+on:
+  schedule:
+    - cron: "30 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate_lists:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Install go and plugin
+        run: |
+          go install github.com/Loyalsoldier/geoip@latest
+
+      - name: Curl source
+        env:
+          NO_SKIP: true
+        run: |
+          mkdir -p source
+          # Скачиваем списки IP
+          (curl -s https://www.cloudflare.com/ips-v4/ && echo && curl -s https://www.cloudflare.com/ips-v6/) > source/cloudflare.lst
+          curl -L https://ip-ranges.amazonaws.com/ip-ranges.json | jq -r '.prefixes[].ip_prefix, .ipv6_prefixes[].ipv6_prefix' > source/amazon.lst
+          curl -L https://api.fastly.com/public-ip-list | jq -r '.addresses[], .ipv6_addresses[]' > source/fastly.lst
+          (curl -s https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv4_CIDRs.txt && echo && curl -s https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv6_CIDRs.txt) > source/akamai.lst
+
+      - name: merge lst
+        env:
+          NO_SKIP: true
+        run: |
+          for file in source/*.lst; do cat "$file"; echo; done | sed '/^ *$/d'  > source/merged.sum
+          
+      - name: Compile RuleSet
+        env:
+          NO_SKIP: true
+        run: |
+          geoip convert
+
+      - name: Get current date and release tag
+        id: date
+        run: |
+          echo "DATE=$(date -u +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+          echo "TAG_NAME=build-$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+
+
+          git config user.email "PentiumB@users.noreply.github.com"
+          git config user.name "PentiumB"
+          git add .
+          git commit -m "Generate rule-sets ${{ env.DATE }}" || echo "No changes to commit"
+          git push
+          
+      - name: Upload Release Assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$TAG_NAME" release/* --title "$TAG_NAME" --notes "Automated build"
