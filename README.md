@@ -28,10 +28,10 @@
 ### `.dat` файл
 
 Файл `CDN.dat` включает все категории CDN в формате:
-- `geoip:Amazon`
-- `geoip:Cloudflare`
-- `geoip:Fastly`
-- `geoip:Akamai`
+- `geoip:amazon`
+- `geoip:cloudflare`
+- `geoip:fastly`
+- `geoip:akamai`
 
 
 
