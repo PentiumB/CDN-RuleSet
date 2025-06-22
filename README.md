@@ -8,6 +8,7 @@
 - **Amazon**
 - **Fastly**
 - **Akamai**
+- **cdn77**
 
 ---
 
@@ -20,6 +21,7 @@
 - `Amazon.mrs`
 - `Fastly.mrs`
 - `Akamai.mrs`
+- `cdn77`
 
 Также доступен объединённый файл:
 
@@ -32,6 +34,7 @@
 - `geoip:cloudflare`
 - `geoip:fastly`
 - `geoip:akamai`
+- `geoip:cdn77`
 
 
 
@@ -50,4 +53,7 @@
 - **Akamai**
   - https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv4_CIDRs.txt
   - https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv6_CIDRs.txt
+  
+- **cdn77**
+  - https://prefixlists.tools.cdn77.com/public_lmax_prefixes.json
 
