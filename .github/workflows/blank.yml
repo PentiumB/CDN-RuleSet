@@ -36,7 +36,7 @@ jobs:
           curl -L https://ip-ranges.amazonaws.com/ip-ranges.json | jq -r '.prefixes[].ip_prefix, .ipv6_prefixes[].ipv6_prefix' > source/amazon.lst
           curl -L https://api.fastly.com/public-ip-list | jq -r '.addresses[], .ipv6_addresses[]' > source/fastly.lst
           (curl -s https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv4_CIDRs.txt && echo && curl -s https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv6_CIDRs.txt) > source/akamai.lst
-          curl -L https://prefixlists.tools.cdn77.com/public_lmax_prefixes.json | jq -r '.prefixes[].prefix' > cdn77.lst
+          curl -L https://prefixlists.tools.cdn77.com/public_lmax_prefixes.json | jq -r '.prefixes[].prefix' > source/cdn77.lst
 
       - name: merge lst
         env:
