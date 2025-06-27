@@ -37,7 +37,7 @@ jobs:
         env:
           NO_SKIP: true
         run: |
-          unzip -j asncsv.zip "GeoLite*/GeoLite*"
+          unzip -jo asncsv.zip "GeoLite*/GeoLite*"
           rm asncsv.zip
 
       - name: transformation of lists with screening
