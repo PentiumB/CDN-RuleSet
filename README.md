@@ -8,7 +8,7 @@
 - **Amazon**
 - **Fastly**
 - **Akamai**
-- **cdn77**
+- **cdn77 | datacamp**
 
 ---
 
@@ -21,7 +21,7 @@
 - `Amazon.mrs`
 - `Fastly.mrs`
 - `Akamai.mrs`
-- `cdn77`
+- `datacamp.mrs`
 
 Также доступен объединённый файл:
 
@@ -34,26 +34,10 @@
 - `geoip:cloudflare`
 - `geoip:fastly`
 - `geoip:akamai`
-- `geoip:cdn77`
+- `geoip:datacamp`
 
 
 
-  ## Источники
-
-- **Cloudflare**
-  - https://www.cloudflare.com/ips-v4/
-  - https://www.cloudflare.com/ips-v6/
-
-- **Amazon**
-  - https://ip-ranges.amazonaws.com/ip-ranges.json
-
-- **Fastly**
-  - https://api.fastly.com/public-ip-list
-
-- **Akamai**
-  - https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv4_CIDRs.txt
-  - https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv6_CIDRs.txt
-  
-- **cdn77**
-  - https://prefixlists.tools.cdn77.com/public_lmax_prefixes.json
+  ## Источник
+**www.maxmind.com `GeoLite ASN`** 
 
