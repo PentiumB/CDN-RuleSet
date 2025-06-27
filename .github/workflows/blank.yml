@@ -31,7 +31,7 @@ jobs:
           NO_SKIP: true
         run: |
           mkdir -p source
-          curl -L "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN-CSV&license_key=${LICENSE_KEY}" -o ./asncsv.zip
+          curl -L "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN-CSV&license_key=${LICENSE_KEY}&suffix=zip" -o ./asncsv.zip
 
       - name: Unzip
         env:
