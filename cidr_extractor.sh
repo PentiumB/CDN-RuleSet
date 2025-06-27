@@ -1,6 +1,6 @@
 #!/bin/bash
 
-orgs=("cloudflare" "fastly")
+orgs=("cloudflare" "fastly" "amazon" "Datacamp" "akamai")
 
 inputv4="GeoLite2-ASN-Blocks-IPv4.csv"
 inputv6="GeoLite2-ASN-Blocks-IPv6.csv"
