@@ -31,12 +31,20 @@ jobs:
           NO_SKIP: true
         run: |
           mkdir -p source
-          # Скачиваем списки IP
-          (curl -s https://www.cloudflare.com/ips-v4/ && echo && curl -s https://www.cloudflare.com/ips-v6/) > source/cloudflare.lst
-          curl -L https://ip-ranges.amazonaws.com/ip-ranges.json | jq -r '.prefixes[].ip_prefix, .ipv6_prefixes[].ipv6_prefix' > source/amazon.lst
-          curl -L https://api.fastly.com/public-ip-list | jq -r '.addresses[], .ipv6_addresses[]' > source/fastly.lst
-          (curl -s https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv4_CIDRs.txt && echo && curl -s https://techdocs.akamai.com/property-manager/pdfs/akamai_ipv6_CIDRs.txt) > source/akamai.lst
-          curl -L https://prefixlists.tools.cdn77.com/public_lmax_prefixes.json | jq -r '.prefixes[].prefix' > source/cdn77.lst
+          curl -L "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN-CSV&license_key=${LICENSE_KEY}" -o ./asncsv.zip
+
+      - name: Unzip
+        env:
+          NO_SKIP: true
+        run: |
+          unzip asncsv.zip "GeoLite*/GeoLite*"
+          rm asncsv.zip
+
+      - name: transformation of lists with screening
+        env:
+          NO_SKIP: true
+        run: bash cidr_extractor.sh
+
 
       - name: merge lst
         env:
