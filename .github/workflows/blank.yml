@@ -22,7 +22,7 @@ jobs:
         with:
           go-version: '1.24'
 
-      - name: Install go and plugin
+      - name: Install geoip
         run: |
           go install github.com/Loyalsoldier/geoip@latest
 
@@ -54,7 +54,7 @@ jobs:
         env:
           NO_SKIP: true
         run: |
-          geoip convert
+          "$(go env GOPATH)/bin/geoip" convert
 
       - name: Get current date and release tag
         id: date
@@ -73,4 +73,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "$TAG_NAME" release/* --title "$TAG_NAME" --notes "Automated build"
+          gh release create "$TAG_NAME" $(find release -type f | sort) --title "$TAG_NAME" --notes "Automated build"
