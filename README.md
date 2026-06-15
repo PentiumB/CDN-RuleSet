@@ -1,6 +1,6 @@
 # 🚀 CDN RuleSet Generator
 
-### *CIDR-диапазоны для популярных CDN-сервисов в формате `.dat`(GeoIP/Xray), `.mrs`(mihomo) и `.sum` (plain text) на основе многих источников*
+### *CIDR-диапазоны для популярных CDN-сервисов в формате `.dat` (GeoIP/Xray), `.mrs` (mihomo), `.srs` (sing-box) и `.sum` (plain text) на основе многих источников*
 
 ---
 
@@ -23,7 +23,7 @@
 
 ---
 
-## 📄 Файлы для mihomo (.mrs) и просто списком (merged.sum) в Releases
+## 📄 Файлы для mihomo (.mrs), sing-box (.srs) и просто списком (merged.sum) в Releases
 
 ## 📄 Геофайл `geoip.dat` в Releases
 

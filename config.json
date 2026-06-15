@@ -4,7 +4,7 @@
       "type": "text",
       "action": "add",
       "args": {
-        "inputDir": "./source",
+        "inputDir": "./source"
       }
     }
   ],
@@ -15,13 +15,18 @@
         "outputDir": "./release",
         "excludeList": ["merged"]
       }
-     },
-     {
+    },
+    {
       "type": "mihomoMRS",
       "args": {
         "outputDir": "./release"
       }
-     }
-
+    },
+    {
+      "type": "singboxSRS",
+      "args": {
+        "outputDir": "./release/sing-box"
+      }
+    }
   ]
 }
