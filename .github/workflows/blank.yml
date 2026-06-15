@@ -32,7 +32,7 @@ jobs:
         run: |
           mkdir -p source
           curl -L "https://dl.netsyms.net/dbs/geolite2/GeoLite2-ASN-CSV.zip" -o ./GeoLite.zip
-          curl -L "https://ipinfo.io/data/ipinfo_lite.csv.gz?token=733332abe59b9c" -o ./IpInfo.gz
+          curl -L "https://ipinfo.io/data/ipinfo_lite.csv.gz?token=${{ secrets.IPINFO_TOKEN }}" -o ./IpInfo.gz
           curl -L "https://raw.githubusercontent.com/sapics/ip-location-db/refs/heads/main/asn/asn-ipv4.csv" -o ./asn-ipv4.csv
           curl -L "https://raw.githubusercontent.com/sapics/ip-location-db/refs/heads/main/asn/asn-ipv6.csv" -o ./asn-ipv6.csv
 
